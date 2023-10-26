@@ -12,7 +12,7 @@ func NewBlackjack() *blackjack {
 	return &blackjack{deck: newDeck()}
 }
 
-func (b *blackjack) StartGame() {
+func (b *blackjack) Play() {
 	b.deck.shuffle()
 
 	player := newPlayer("Костя")
@@ -56,12 +56,6 @@ func (b *blackjack) StartGame() {
 	}
 
 	b.endGame()
-}
-
-func (b *blackjack) ClearTable() {
-	b.deck.cardIndex = 0
-	b.player = nil
-	b.dealer = nil
 }
 
 func (b blackjack) endGame() {

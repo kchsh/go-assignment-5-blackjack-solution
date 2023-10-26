@@ -6,12 +6,11 @@ import (
 )
 
 type deck struct {
-	cards     []card
-	cardIndex int
+	cards []card
 }
 
 func newDeck() *deck {
-	d := &deck{cardIndex: 0}
+	d := &deck{}
 	d.generateDeck()
 
 	return d
@@ -34,16 +33,15 @@ func (d *deck) shuffle() {
 
 	for i := 0; i < len(d.cards); i++ {
 		newIndex := rand.Intn(len(d.cards))
-
-		temp := d.cards[i]
+		c := d.cards[i]
 		d.cards[i] = d.cards[newIndex]
-		d.cards[newIndex] = temp
+		d.cards[newIndex] = c
 	}
 }
 
 func (d *deck) dealCard() card {
-	topCard := d.cards[d.cardIndex]
-	d.cardIndex++
+	topCard := d.cards[0]
+	d.cards = d.cards[1:]
 
 	return topCard
 }
